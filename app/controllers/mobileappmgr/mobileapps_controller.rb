@@ -8,8 +8,27 @@ module Mobileappmgr
     def index
 
       @sysurl     = request.host_with_port
-
       @mobileapps = []
+
+      if Rails.env.production? then
+
+        # If the user is coming from their smartphone then redirect them to their
+        # appstore link
+        if request.user_agent && request.user_agent[/(iPhone|Android)/] then
+
+          mobile_app_config = YAML.load_file(File.join(Rails.root, "config", "mobileapps.yml"))
+
+          phone_os = $1
+          
+          redirect_to mobile_app_config[phone_os]["appstore_url"]
+          return
+        else
+          render :file => "public/mobileapps/mobileapp.html"
+          return
+        end
+      end
+
+      # If in staging or development present development-uploaded versions of the application
       
       files = Dir["public/mobileapps/*.yml"]
 
