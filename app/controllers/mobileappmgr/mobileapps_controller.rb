@@ -30,7 +30,7 @@ module Mobileappmgr
 
       # If in staging or development present development-uploaded versions of the application
       
-      files = Dir["public/mobileapps/*.yml"]
+      files = Dir["public/mobileapps/uploads/*.yml"]
 
       files.each do |file|
         mobileapp = YAML.load_file(file)
@@ -58,7 +58,7 @@ module Mobileappmgr
     def show
 
       name = params[:id]
-      yml_fname = "public/mobileapps/#{name}.yml"
+      yml_fname = "public/mobileapps/uploads/#{name}.yml"
       mobileapp = YAML.load_file(yml_fname)
 
       platform  = mobileapp['platform']
@@ -69,7 +69,7 @@ module Mobileappmgr
         bundleid  = mobileapp['bundleid']      
 
         sysurl = request.host_with_port
-        ipaurl = "http://#{sysurl}/mobileapps/#{apptarget}.#{version}.ipa"
+        ipaurl = "http://#{sysurl}/mobileapps/uploads/#{apptarget}.#{version}.ipa"
         
         plist_content = <<-PLIST_DOCUMENT
 <?xml version="1.0" encoding="UTF-8"?>
@@ -111,7 +111,7 @@ PLIST_DOCUMENT
         render :text => plist_content
 
       else
-        redirect_to "/mobileapps/#{apptarget}.#{version}.apk"
+        redirect_to "/mobileapps/uploads/#{apptarget}.#{version}.apk"
       end
     end
   end

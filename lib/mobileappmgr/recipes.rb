@@ -44,27 +44,23 @@ YML_DOCUMENT
         File.open(yml_fname, 'w') {|f| f.write(yml_content)}
         upload(yml_fname, "#{shared_path}/mobileapps/#{yml_fname}")
       end
-      
 
-    end
-
-    desc "Symlink"
-    task :symlink_mobileapps do
-      run ("mkdir #{shared_path}/mobileapps")
-      run ("ln -s #{shared_path}/mobileapps #{current_path}/public/mobileapps")
     end
 
     desc "Publish an Android APK to a remote deployment server"
     namespace :publish do
+
+      desc "Publish an Android APK to a remote deployment server"
       task :apk do
         workhorse "apk"
       end
-
+      
       desc "Publish an iOS IPA to a remote deployment server"
       task :ipa do
         workhorse "ipa"
       end
 
+      desc "Publish an iOS IPA and Android APK to a remote deployment server"
       task :all do
         workhorse "apk"
         workhorse "ipa"
