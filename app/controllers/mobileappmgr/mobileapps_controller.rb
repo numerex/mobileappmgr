@@ -10,7 +10,7 @@ module Mobileappmgr
       @sysurl     = request.host_with_port
       @mobileapps = []
 
-      if Rails.env.production? then
+      if Rails.env.production? or params[:preview] == 'production' then
 
         # If the user is coming from their smartphone then redirect them to their
         # appstore link
