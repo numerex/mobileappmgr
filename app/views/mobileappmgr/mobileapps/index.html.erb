@@ -21,9 +21,9 @@
 <br />
   <% unless Rails.env.production? %>
       <% if params[:preview] == 'production' %>
-          <p>For a preview of what the user will see in production, click <a href="/mobileapps?preview=production">here</a>.</p>
-      <% else %>
           <p>To return to the <%= Rails.env.upcase %> view, click <a href="/mobileapps">here</a>.</p>
+      <% else %>
+          <p>For a preview of what the user will see in production, click <a href="/mobileapps?preview=production">here</a>.</p>
       <% end %>
   <% end %>
 </div>
