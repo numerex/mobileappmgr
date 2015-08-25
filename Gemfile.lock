@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mobileappmgr (0.0.1)
+    mobileappmgr (1.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -82,3 +82,6 @@ DEPENDENCIES
   mobileappmgr!
   rails (= 3.0.9)
   sqlite3
+
+BUNDLED WITH
+   1.10.6
